@@ -35,8 +35,7 @@ def parse_rawdata(filename):
 #Calculates the euclidean distance between a single test data and  the list of testing data
 def euclidean_distance(test_data,train_lst):
     print "IN:: euclidean_distance"
-    # print test_data.features
-    # print len(train_lst)
+    # distance_vector is map so as to handle duplicate distance
     distance_vector = {}
     for train_data in train_lst:
         distance_lst = []
@@ -56,6 +55,7 @@ def nearest_neighbors(test_lst,train_lst,k):
 
     for test_data in test_lst:
         distance_vector = euclidean_distance(test_data, train_lst)
+        # sorted(distance_vector.keys())[:k] - gets the k nearest values from the distance_vector
         nearest_neighbors = sorted(distance_vector.keys())[:k]
         labels = []
         for n in nearest_neighbors:

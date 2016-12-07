@@ -2,6 +2,7 @@
 neural networks
 '''
 import random
+import math
 from numpy import dot
 import time 
 
@@ -13,7 +14,7 @@ def normalize(data):
 	for i in tr_data:
 		max_element = max(i)
 		norm_data.append([float(j)/max_element for j in i])
-	return norm_data
+	return zip(*norm_data)
 
 #read data into a matrix of floats, stroes names, class_lables
 #in a seperate tuple, deletes them from main data
@@ -28,7 +29,7 @@ def read_data(file_name):
 	return normalize([map(float,i) for i in data]),class_labels, names
 
 #generate wieghts
-def generate_weights(prev_size, nex_size):
+def generate_weights(prev_size, next_size):
 	return [[random.uniform(-1,1) for lol in range(next_size)] for lolrange in range(prev_size)]
 
 #dot product of matrices
@@ -37,14 +38,37 @@ def dot_product(matrix_one, matrix_two):
 
 #activation function
 def sigmoid(x):
-	return 1/(1+e**(-x))
+	return 1/(1+math.exp(-x))
+
+#s is a sigmoid. d/dx(s) = s(1-s)
+def sigmoid_derivative(s):
+	return s*(1-s)
+
+def calculate_loss(pred, act):
+	return (0.5)*sum([(pred[i]-act[i])**2 for i in range(len(pred))])
 
 #feed forward method
-def feed_forward(input_data, weights_one, weights_two):
-	
-	hidden_matrix = dot_product(matrix, weights_one)
+def feed_forward(input_data, hidden_number, output_number):	
+	weights_one = generate_weights(len(input_data[0]),hidden_number )
+	weights_two = generate_weights(hidden_number, output_number)
+	hidden_matrix = dot_product(input_data, weights_one)
+	#print "s", len(hidden_matrix),len(hidden_matrix[0])
 	hidden_activation = [map(sigmoid, row) for row in hidden_matrix]
 	output_matrix = dot_product(hidden_activation, weights_two)
 	pred = [map(sigmoid, row) for row in output_matrix]
  	return pred
- 
+
+input_data, class_labels, names = read_data("train-data.txt") 
+d =  feed_forward(input_data, 200,4)
+cd = {'0' : 3, '90': 0, '180':1, '270':2}
+act = [cd[i] for i in class_labels]
+pred = map(lambda i:i.index(max(i)), d)
+#print calculate_loss(pred, act)
+count = 0.0
+for i in range(len(pred)):
+	if pred[i]==act[i]:
+		count+=1.0
+print count/len(input_data)
+#print d
+#print len(d), len(d[0])
+print time.time()-start

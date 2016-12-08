@@ -1,4 +1,5 @@
 import knn
+
 import sys
 
 def main():
@@ -13,6 +14,5 @@ def main():
         '''KNN is simple but complexity is the problem - if number of sample data is huge then the algorithm
         has a huge complexity'''
         knn.classify(train,test,k)
-
 
 main()

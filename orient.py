@@ -5,7 +5,7 @@ import sys
 def main():
     # (train,test,classifier)=sys.argv[1:4]
     # (train, test, technique) = ("train-data-mod.txt","test-data-mod.txt","nearest")
-    (train, test, technique) = ("train-data-mod.txt", "test-data-mod.txt", "nearest")
+    (train, test, technique) = ("train-data.txt", "test-data.txt", "nearest")
     #define the number of neighbours to be considered
     # 1. k should be odd 2. should not be the multiple of number of classes
     k = 200

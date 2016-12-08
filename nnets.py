@@ -47,6 +47,30 @@ def sigmoid_derivative(s):
 def calculate_loss(pred, act):
 	return (0.5)*sum([(pred[i]-act[i])**2 for i in range(len(pred))])
 
+def overall_loss(d, class_labels):
+	loss = 0
+	for i in range(len(d)):
+		pred = d[i]
+		act = class_labels[i]
+		ind = cd[act]
+		val= [0]*4
+		val[ind]=1
+		loss+=calculate_loss(pred, val)
+	return loss
+
+def accuracy(d, class_labels):
+	count = 0 	
+	for i in range(len(d)):
+		pred = d[i]
+		pred_val = pred.index(max(pred))
+		act = class_labels[i]
+		ind = cd[act]
+		if pred_val == ind:
+			count+=1.0
+	return count/len(class_labels)
+		
+
+
 #feed forward method
 def feed_forward(input_data, hidden_number, output_number):	
 	weights_one = generate_weights(len(input_data[0]),hidden_number )
@@ -59,16 +83,9 @@ def feed_forward(input_data, hidden_number, output_number):
  	return pred
 
 input_data, class_labels, names = read_data("train-data.txt") 
-d =  feed_forward(input_data, 200,4)
-cd = {'0' : 3, '90': 0, '180':1, '270':2}
-act = [cd[i] for i in class_labels]
-pred = map(lambda i:i.index(max(i)), d)
-#print calculate_loss(pred, act)
-count = 0.0
-for i in range(len(pred)):
-	if pred[i]==act[i]:
-		count+=1.0
-print count/len(input_data)
-#print d
-#print len(d), len(d[0])
+d =  feed_forward(input_data, 10,4)
+cd = {'0' : 0, '90': 1, '180':2, '270':3}
+
+print overall_loss(d, class_labels)
+print accuracy(d, class_labels)
 print time.time()-start

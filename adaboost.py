@@ -147,54 +147,14 @@ def confusionMatrix(cm):
 
 allClss = {0,90,180,270}
 
-if __name__ == "__main__":
+def main(train_file , test_file, stCount):
+    "python orient.py train_file.txt test_file.txt adaboost stump_count"
+    "python orient.py /Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/test-data.txt /Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/test-data.txt adaboost 5"
+
     time1 = time.time()
-    stCount = 15
-    mode = "test"
-    if mode == "test":
-        cm = []
-        corr = 0
-        wrong = 0
-        test_file = "/Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/test-data.txt"
-        testData,labels = read_data(test_file)
-        #@todo : load the testData into testData list
-        with open("adaboost", 'rb') as handle:
-            classes = pickle.load(handle)
+    mode = "train"
 
-        ind = 0
-        f = open("adaboost output.txt", "w")
-        f.close()
-        for row in testData:
-            upperPredList = {}
-            for cls in classes:
-                sList = classes[cls]
-                num = 0.0
-                den = 0.0
-                for st in sList:
-                    pred = st.classify(row,cls)
-                    if pred == cls:
-                        num += st.weight
-                    den += st.weight
-                upperPredList[cls] = float(num)/den
-            #Below is the final prediction value for a row
-            finalPred = upperPredList.keys()[upperPredList.values().index(max(upperPredList.values()))]
-            cm.append((row[0],finalPred))
-            #put labels[ind] , finalPred into a file
-            f = open("adaboost output.txt","a")
-            f.write(labels[ind]+" "+str(finalPred)+"\n")
-            f.close()
-            if finalPred == row[0]:
-                corr += 1
-            else:
-                wrong += 1
-            ind += 1
-        print corr,wrong
-        print "accuracy=",float(corr)/(corr + wrong)
-        confusionMatrix(cm)
-        exit()
-    # If condition exits above
-
-    train_file = "/Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/train-data.txt"
+    #train_file = "/Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/train-data.txt"
     trainData , labels = read_data(train_file)
     wt = float(1) / len(trainData)
     for i in range(len(trainData)):
@@ -229,10 +189,50 @@ if __name__ == "__main__":
     with open("adaboost", 'wb') as handle:
         pickle.dump(classes, handle)
 
+    cm = []
+    corr = 0
+    wrong = 0
+    # test_file = "/Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/test-data.txt"
+    testData, labels = read_data(test_file)
+    # @todo : load the testData into testData list
+    with open("adaboost", 'rb') as handle:
+        classes = pickle.load(handle)
 
-print "Total time taken=",time.time()-time1
+    ind = 0
+    f = open("adaboost_output.txt", "w")
+    f.close()
+    for row in testData:
+        upperPredList = {}
+        for cls in classes:
+            sList = classes[cls]
+            num = 0.0
+            den = 0.0
+            for st in sList:
+                pred = st.classify(row, cls)
+                if pred == cls:
+                    num += st.weight
+                den += st.weight
+            upperPredList[cls] = float(num) / den
+
+        # Below is the final prediction value for a row
+        finalPred = upperPredList.keys()[upperPredList.values().index(max(upperPredList.values()))]
+        cm.append((row[0], finalPred))
+
+        f = open("adaboost_output.txt", "a")
+        f.write(labels[ind] + " " + str(finalPred) + "\n")
+        f.close()
+        if finalPred == row[0]:
+            corr += 1
+        else:
+            wrong += 1
+        ind += 1
+    print corr, wrong
+    print "accuracy=", float(corr) * 100 / (corr + wrong), "%"
+    confusionMatrix(cm)
+    exit()
 
 
+    print "Total time taken=",time.time()-time1
 
-    #pairs = generateRandomPairs()
+
 

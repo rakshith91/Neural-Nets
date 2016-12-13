@@ -166,9 +166,9 @@ def feed_forward(data, weights_one, weights_two):
 def train(input_data, class_labels,hidden_number, output_number=4):	
 	weights_one = generate_weights(len(input_data[0]),hidden_number )
 	weights_two = generate_weights(hidden_number, output_number)
-	for i in range(3):
-		hidden_matrix = dot_product(input_data, weights_one) #z1 = 36796*190 
-		hidden_activation = [map(sigmoid, row) for row in hidden_matrix] #a1 = 36796*190 activation func applied to each element of hidden matrix z1
+	for i in range(15):
+		hidden_matrix = dot_product(input_data, weights_one) #z1 = 36796*hidden nodes
+		hidden_activation = [map(sigmoid, row) for row in hidden_matrix] #a1 = 36796*hidden nodes activation func applied to each element of hidden matrix z1
 		output_matrix = dot_product(hidden_activation, weights_two) #using the generate a1(hideen_activation), find the values at output nodes for each record. outputs 36976*4 matrix each row represents probabilty of the record belonging to eachn node.
 		#prediction will be element wise sigmoid for each element in output matrix
 		pred = [map(sigmoid, row) for row in output_matrix]

@@ -1,6 +1,7 @@
 import knn
 from nnets import *
 import sys
+import adaboost
 
 def confusionMatrix(cm):
     #cm = [(actual,pred),(actual,pred),(actual,pred)]
@@ -23,6 +24,8 @@ def confusionMatrix(cm):
         print "\n"
 
 def main():
+	print "hiii"
+	print sys.argv
 	technique = sys.argv[3]
     # (train,test,classifier)=sys.argv[1:4]
     # (train, test, technique) = ("train-data-mod.txt","test-data-mod.txt","nearest")
@@ -51,6 +54,8 @@ def main():
 		print cf_list[:10]
 		#print time.time()-start
 	if technique == "adaboost":
-		pass
+		"python orient.py train_file.txt test_file.txt adaboost stump_count"
+		print sys.argv[0],sys.argv[1],sys.argv[2],sys.argv[4]
+		adaboost.main(sys.argv[1],sys.argv[2],int(sys.argv[4]))
 
 main()

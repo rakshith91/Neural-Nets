@@ -1,5 +1,57 @@
 '''
 neural networks
+
+1) Problem description
+
+The problem is to classify image orientation using neural networks. It involves two steps:feed forward and back propagation.
+
+There is an input layer with 192 nodes in it, hidden layer with a user specified number of nodes and 4 output nodes in the output layer.
+
+Each node in the previous layer is connected to all the nodes in the next layer forming a trellis. Each edge has a weight.
+
+The weight matrix from input layer to hidden layer is called weights_one
+The weight matrix from hidden layer to output layer is called weights_two
+
+In the feed forward, the weights are generate randomly from a uniform distribution between (-1, 1).
+
+Before running the feed forward, the data is normalised . Every value x in column C is normalised to x/max(C).
+
+Once the hidden nodes values are computed , a sigmoid activation function is used. 
+
+The train functions does feed forward once and backpropagation 15 times and keeps learning the weights. 
+
+Every time, step function of 0.1 is used along with a regularization parameter of 0.01
+
+The loss function used is 1/2(y-y_hat)**2.This shows the overall loss in training the data
+
+
+
+2)description of program 
+
+The transpose function returns transpose of a matrix.
+
+normalize returns the normalized matrix.
+
+read_data returns a tuple of data, features and image names
+
+generate_weights generates the weight matrix 
+
+loss_matrix compute the loss after every computation.
+
+feed_forward function is to perform feed forward with given weights.i.e. to test the data.
+
+finally train returns the weights tuple after training on the train data and write_to_file writes the output.
+
+3)discussion of any problems
+
+There are several problems faced :
+
+i) decision of the activation function between sigmoid, tanh : sigmoid has been chosen
+
+ii)Due to high bias, all the examples are getting classified to either 90 or 180.
+
+
+
 '''
 import random
 import math
@@ -72,6 +124,7 @@ def calculate_loss(pred, act):
 
 #sum of all losses. d is the prediction matrix of size 36976*4
 def overall_loss(d, class_labels):
+	cd = {'0' : 0, '90': 1, '180':2, '270':3}
 	loss = 0.0
 	for i in range(len(d)):
 		pred = d[i]
@@ -84,6 +137,7 @@ def overall_loss(d, class_labels):
 
 #accuracy for prediction, d is the prediction matrix of size 36976*4
 def accuracy(d, class_labels):
+	cd = {'0' : 0, '90': 1, '180':2, '270':3}
 	count = 0 	
 	for i in range(len(d)):
 		pred = d[i]
@@ -107,7 +161,7 @@ def feed_forward(data, weights_one, weights_two):
 
 #training. input_data(read_data[0]), hidden number is number of hidden nodes. 
 #output number is no of output nodes=4
-def train(input_data, hidden_number, output_number=4):	
+def train(input_data, class_labels,hidden_number, output_number=4):	
 	weights_one = generate_weights(len(input_data[0]),hidden_number )
 	weights_two = generate_weights(hidden_number, output_number)
 	for i in range(3):
@@ -135,12 +189,14 @@ def train(input_data, hidden_number, output_number=4):
 		print "loss",loss
 	return weights_one, weights_two 
 
-#input_data, class_labels, names = read_data("train-data.txt")
-#cd = {'0' : 0, '90': 1, '180':2, '270':3}
-#weights_one, weights_two= train(input_data, int(sys.argv[-1]))
-#output_data, oclass_labels, names = read_data("test-data.txt")
-#pred = feed_forward(input_data, weights_one, weights_two)
-#print "Train Accuracy is" ,accuracy(pred, class_labels)
-#pred = feed_forward(output_data, weights_one, weights_two)
-#print "Test Accuracy is" ,accuracy(pred, oclass_labels)
-#print time.time()-start
+#writes output to a file
+def write_to_file(prediction, image_names):
+	cd = {'0' : 0, '90': 1, '180':2, '270':3}
+	orient = {0 : 0, 1: 90, 2: 180, 3 : 270}
+	f = open("nnet_output.txt", "w")
+	for i in range(len(prediction)):
+		row = prediction[i]
+		ind = row.index(max(row))
+		f.write(image_names[i]+" "+str(orient[ind])+"\n")
+	f.close()
+			

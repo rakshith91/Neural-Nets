@@ -25,7 +25,8 @@ def main():
 		test_pred = feed_forward(output_data, weights_one, weights_two)
 		
 		print "Test Accuracy is" ,accuracy(test_pred, oclass_labels)
-		write_to_file(test_pred, test_names)
+		cf_list = write_to_file(test_pred,oclass_labels, test_names)
+		print cf_list[:10]
 		#print time.time()-start
 	if technique == "adaboost":
 		pass

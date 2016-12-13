@@ -192,13 +192,15 @@ def train(input_data, class_labels,hidden_number, output_number=4):
 	return weights_one, weights_two 
 
 #writes output to a file
-def write_to_file(prediction, image_names):
+def write_to_file(prediction,actual, image_names):
 	cd = {'0' : 0, '90': 1, '180':2, '270':3}
 	orient = {0 : 0, 1: 90, 2: 180, 3 : 270}
 	f = open("nnet_output.txt", "w")
+	cf_list=[]
 	for i in range(len(prediction)):
 		row = prediction[i]
 		ind = row.index(max(row))
+		cf_list.append((actual[i], orient[ind]))
 		f.write(image_names[i]+" "+str(orient[ind])+"\n")
 	f.close()
-			
+	return cf_list

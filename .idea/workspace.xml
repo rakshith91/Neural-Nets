@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="43e5e793-e7a4-4b39-88bf-67c8804c2e11" name="Default" comment="" />
+    <list default="true" id="43e5e793-e7a4-4b39-88bf-67c8804c2e11" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/adaboost.py" afterPath="$PROJECT_DIR$/adaboost.py" />
+    </list>
     <ignored path="bsairamr-hannavaj-jeffravi-a5.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,8 +26,8 @@
       <file leaf-file-name="adaboost.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/adaboost.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1845">
-              <caret line="127" column="17" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
+            <state relative-caret-position="360">
+              <caret line="146" column="23" selection-start-line="146" selection-start-column="23" selection-end-line="146" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -80,11 +82,28 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bsairamr-hannavaj-jeffravi-a5" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bsairamr-hannavaj-jeffravi-a5" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bsairamr-hannavaj-jeffravi-a5" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -273,12 +292,12 @@
     <frame x="0" y="23" width="1280" height="731" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21473354" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38871473" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -322,50 +341,58 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orient.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-          <folding>
-            <marker date="1481408875000" expanded="true" signature="0:22" placeholder="import ..." />
-            <marker date="1481408875000" expanded="true" signature="35:627" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="40:165" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="248:373" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="450:627" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="459:592" placeholder="'''...'''" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nnets.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
           <caret line="21" column="11" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="11" />
           <folding>
-            <marker date="1481408875000" expanded="true" signature="0:23" placeholder="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1481408875000" expanded="false" signature="24:83" placeholder="import ..." />
-            <marker date="1481408875000" expanded="true" signature="142:298" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="197:274" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="300:412" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="438:685" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="748:842" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="909:954" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="992:1019" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="1081:1097" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="1129:1196" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="1232:1394" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="1267:1381" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="1426:1621" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="1464:1589" placeholder="..." />
-            <marker date="1481408875000" expanded="true" signature="1707:2139" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="0:23" placeholder="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1481663790000" expanded="false" signature="24:79" placeholder="import ..." />
+            <marker date="1481663790000" expanded="true" signature="142:298" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="197:274" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="300:412" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="438:685" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="748:842" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="909:954" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="992:1019" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="1081:1097" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="1129:1196" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="1232:1394" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="1267:1381" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="1426:1621" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="1464:1589" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="1707:2139" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adaboost">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3060">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="21" column="66" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
+          <folding>
+            <marker date="1481663790000" expanded="true" signature="0:11" placeholder="import ..." />
+            <marker date="1481663790000" expanded="false" signature="0:41" placeholder="import ..." />
+            <marker date="1481663790000" expanded="true" signature="54:1177" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="84:465" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="494:659" placeholder="..." />
+            <marker date="1481663790000" expanded="true" signature="497:630" placeholder="'''...'''" />
+            <marker date="1481663790000" expanded="true" signature="684:1150" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/knn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="27" selection-start-line="5" selection-start-column="4" selection-end-line="9" selection-end-column="27" />
+        <state relative-caret-position="461">
+          <caret line="104" column="23" selection-start-line="104" selection-start-column="21" selection-end-line="104" selection-end-column="23" />
           <folding>
             <marker date="1481408875000" expanded="true" signature="0:49" placeholder="import ..." />
             <marker date="1481408875000" expanded="true" signature="70:396" placeholder="..." />
@@ -388,22 +415,16 @@
             <marker date="1481408875000" expanded="true" signature="2964:3585" placeholder="..." />
             <marker date="1481408875000" expanded="true" signature="3042:3585" placeholder="..." />
             <marker date="1481408875000" expanded="true" signature="3387:3505" placeholder="..." />
+            <marker date="1481408875000" expanded="true" signature="3614:4115" placeholder="..." />
             <marker date="1481408875000" expanded="true" signature="3816:4007" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/adaboost">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3060">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/adaboost.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="127" column="17" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
+        <state relative-caret-position="360">
+          <caret line="146" column="23" selection-start-line="146" selection-start-column="23" selection-end-line="146" selection-end-column="23" />
           <folding />
         </state>
       </provider>

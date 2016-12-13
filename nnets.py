@@ -1,6 +1,8 @@
 '''
 neural networks
 
+The program takes about 6 mins for 25 iterations. 
+
 1) Problem description
 
 The problem is to classify image orientation using neural networks. It involves two steps:feed forward and back propagation.

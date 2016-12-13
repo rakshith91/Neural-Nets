@@ -6,10 +6,10 @@ import math
 from numpy import dot
 import numpy as np
 import time 
-
-start = time.time()
+import sys
+#start = time.time()
 #remove this. comment and line below
-random.seed(1)
+#random.seed(1)
 
 #transpose matrix function. x is a matrix
 def transpose(x):
@@ -105,17 +105,12 @@ def feed_forward(data, weights_one, weights_two):
 	pred = [map(sigmoid, row) for row in output_matrix]
  	return pred
 
-
-input_data, class_labels, names = read_data("train-data.txt")
-cd = {'0' : 0, '90': 1, '180':2, '270':3}
-
-
 #training. input_data(read_data[0]), hidden number is number of hidden nodes. 
 #output number is no of output nodes=4
 def train(input_data, hidden_number, output_number=4):	
 	weights_one = generate_weights(len(input_data[0]),hidden_number )
 	weights_two = generate_weights(hidden_number, output_number)
-	for i in range(50):
+	for i in range(3):
 		hidden_matrix = dot_product(input_data, weights_one) #z1 = 36796*190 
 		hidden_activation = [map(sigmoid, row) for row in hidden_matrix] #a1 = 36796*190 activation func applied to each element of hidden matrix z1
 		output_matrix = dot_product(hidden_activation, weights_two) #using the generate a1(hideen_activation), find the values at output nodes for each record. outputs 36976*4 matrix each row represents probabilty of the record belonging to eachn node.
@@ -140,10 +135,12 @@ def train(input_data, hidden_number, output_number=4):
 		print "loss",loss
 	return weights_one, weights_two 
 
-weights_one, weights_two= train(input_data, 200)
-output_data, oclass_labels, names = read_data("test-data.txt")
-pred = feed_forward(input_data, weights_one, weights_two)
-print "Train Accuracy is" ,accuracy(pred, class_labels)
-pred = feed_forward(output_data, weights_one, weights_two)
-print "Test Accuracy is" ,accuracy(pred, oclass_labels)
-print time.time()-start
+#input_data, class_labels, names = read_data("train-data.txt")
+#cd = {'0' : 0, '90': 1, '180':2, '270':3}
+#weights_one, weights_two= train(input_data, int(sys.argv[-1]))
+#output_data, oclass_labels, names = read_data("test-data.txt")
+#pred = feed_forward(input_data, weights_one, weights_two)
+#print "Train Accuracy is" ,accuracy(pred, class_labels)
+#pred = feed_forward(output_data, weights_one, weights_two)
+#print "Test Accuracy is" ,accuracy(pred, oclass_labels)
+#print time.time()-start

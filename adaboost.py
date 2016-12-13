@@ -120,13 +120,35 @@ def updateWeights(trainData,st,bestError,cls):
 
     return trainData
 
+def confusionMatrix(cm):
+    #cm = [(actual,pred),(actual,pred),(actual,pred)]
+    lst =   (0,90,180,270)
+    matrix = [[0,0,0,0],\
+              [0,0,0,0],\
+              [0,0,0,0],\
+              [0,0,0,0]]
+
+    for actual,pred in cm:
+        i = lst.index(actual)
+        j = lst.index(pred)
+        matrix[i][j] += 1
+
+
+    print "Confusion Matrix is Below: (0,90,180,270)"
+    for i in range(len(matrix)):
+        for j in range(len(matrix)):
+            print str(matrix[i][j])+" ",
+        print "\n"
+
+
 allClss = {0,90,180,270}
 
 if __name__ == "__main__":
     time1 = time.time()
     stCount = 25
-    mode = "train"
+    mode = "test"
     if mode == "test":
+        cm = []
         corr = 0
         wrong = 0
         test_file = "/Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/test-data.txt"
@@ -149,13 +171,16 @@ if __name__ == "__main__":
                 upperPredList[cls] = float(num)/den
             #Below is the final prediction value for a row
             finalPred = upperPredList.keys()[upperPredList.values().index(max(upperPredList.values()))]
+            cm.append((row[0],finalPred))
             if finalPred == row[0]:
                 corr += 1
             else:
                 wrong += 1
         print corr,wrong
         print "accuracy=",float(corr)/(corr + wrong)
+        confusionMatrix(cm)
         exit()
+    # If condition exits above
 
     train_file = "/Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/train-data.txt"
     trainData = read_data(train_file)

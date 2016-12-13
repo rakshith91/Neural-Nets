@@ -17,12 +17,16 @@ class Stump(object):
 def read_data(test_file):
     f = open(test_file,"r")
     lines = f.readlines()
+    labels = []
     for i in range(len(lines)):
-        lines[i] = lines[i].strip().split()[1:]
+
+        lines[i] = lines[i].strip().split()
+        labels.append(lines[i][0])
+        lines[i] = lines[i][1:]
         for j in range(len(lines[i])):
             lines[i][j] = int(lines[i][j])
     f.close()
-    return lines
+    return lines,labels
 
 def findBestPair(trainData,pairsCopy,cls):
     bER = float("-inf")
@@ -145,18 +149,21 @@ allClss = {0,90,180,270}
 
 if __name__ == "__main__":
     time1 = time.time()
-    stCount = 25
+    stCount = 15
     mode = "test"
     if mode == "test":
         cm = []
         corr = 0
         wrong = 0
         test_file = "/Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/test-data.txt"
-        testData = read_data(test_file)
+        testData,labels = read_data(test_file)
         #@todo : load the testData into testData list
         with open("adaboost", 'rb') as handle:
             classes = pickle.load(handle)
 
+        ind = 0
+        f = open("adaboost output.txt", "w")
+        f.close()
         for row in testData:
             upperPredList = {}
             for cls in classes:
@@ -172,10 +179,15 @@ if __name__ == "__main__":
             #Below is the final prediction value for a row
             finalPred = upperPredList.keys()[upperPredList.values().index(max(upperPredList.values()))]
             cm.append((row[0],finalPred))
+            #put labels[ind] , finalPred into a file
+            f = open("adaboost output.txt","a")
+            f.write(labels[ind]+" "+str(finalPred)+"\n")
+            f.close()
             if finalPred == row[0]:
                 corr += 1
             else:
                 wrong += 1
+            ind += 1
         print corr,wrong
         print "accuracy=",float(corr)/(corr + wrong)
         confusionMatrix(cm)
@@ -183,7 +195,7 @@ if __name__ == "__main__":
     # If condition exits above
 
     train_file = "/Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/train-data.txt"
-    trainData = read_data(train_file)
+    trainData , labels = read_data(train_file)
     wt = float(1) / len(trainData)
     for i in range(len(trainData)):
         trainData[i].append(wt)

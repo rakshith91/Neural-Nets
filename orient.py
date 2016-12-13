@@ -2,6 +2,26 @@ import knn
 from nnets import *
 import sys
 
+def confusionMatrix(cm):
+    #cm = [(actual,pred),(actual,pred),(actual,pred)]
+    lst =   (0,90,180,270)
+    matrix = [[0,0,0,0],\
+              [0,0,0,0],\
+              [0,0,0,0],\
+              [0,0,0,0]]
+
+    for actual,pred in cm:
+        i = lst.index(actual)
+        j = lst.index(pred)
+        matrix[i][j] += 1
+
+
+    print "Confusion Matrix is Below: (0,90,180,270)"
+    for i in range(len(matrix)):
+        for j in range(len(matrix)):
+            print str(matrix[i][j])+" ",
+        print "\n"
+
 def main():
 	technique = sys.argv[3]
     # (train,test,classifier)=sys.argv[1:4]
@@ -26,6 +46,8 @@ def main():
 		
 		print "Test Accuracy is" ,accuracy(test_pred, oclass_labels)
 		cf_list = write_to_file(test_pred,oclass_labels, test_names)
+		confusionMatrix(cf_list)
+
 		print cf_list[:10]
 		#print time.time()-start
 	if technique == "adaboost":

@@ -13,14 +13,12 @@ In assignment KNN give better accuracy (71.3 %)but takes 10 min for testing 943 
 """
 
 def confusionMatrix(cm):
-    print "--confusionMatrix--"
-    # cm = [(actual,pred),(actual,pred),(actual,pred)]
     lst = (0, 90, 180, 270)
     matrix = [[0, 0, 0, 0], \
               [0, 0, 0, 0], \
               [0, 0, 0, 0], \
               [0, 0, 0, 0]]
-    print cm
+
     for actual, pred in cm:
         i = lst.index(int(actual))
         j = lst.index(int(pred))
@@ -34,12 +32,13 @@ def confusionMatrix(cm):
 
 
 def main():
-    # (train,test,classifier)=sys.argv[1:4]
-    (train, test, technique) = ("train-data-mod.txt", "test-data-mod.txt", "nearest")
-    # print (train,test,technique)
+    technique = sys.argv[3]
 
     if (technique in ("nearest","best")):
         k = 101
+        print "inside knn"
+        train = sys.argv[1]
+        test = sys.argv[2]
         # (train, test, technique) = ("train-data-mod.txt", "test-data-mod.txt", "nearest")
         '''KNN is simple but complexity is the problem - if number of sample data is huge then the algorithm
         has a huge complexity'''

@@ -26,6 +26,8 @@ For each test_data
 
 Problems faced
 Choosing the correct features -- solution is using a filter as mentioned below
+Choosing the correct distance vector for calculating distance between two points : We came up with an idea where we consider only
+select pixels across two images to calculate the distance.
 
 Simplification --Intuition of choosing edges in the images
 Filter:
@@ -40,8 +42,24 @@ This filter function considers only the pixels configured in the matrix variable
 def filter():
     max_col = 192
     tup_size = 3
-    matrix = [[1, 1, 1, 0, 0, 1, 1, 1], [1, 0, 0, 0, 0, 0, 0, 1], [1, 0, 0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0, 1], [1, 0, 0, 0, 0, 0, 0, 1], [1, 1, 1, 0, 0, 1, 1, 1]]
+    matrix = [[1, 0, 0, 0, 0, 0, 0, 0],\
+              [0, 0, 0, 0, 0, 0, 0, 0],\
+              [0, 0, 0, 0, 0, 0, 0, 0],\
+              [0, 0, 0, 0, 0, 0, 0, 0],\
+              [0, 0, 0, 0, 0, 0, 0, 0],\
+              [0, 0, 0, 0, 0, 0, 0, 0],\
+              [0, 0, 0, 0, 0, 0, 0, 0],\
+              [0, 0, 0, 0, 0, 0, 0, 0]]
+
+    # matrix = [[1, 1, 1, 0, 0, 1, 1, 1], \
+    #           [1, 0, 0, 0, 0, 0, 0, 1], \
+    #           [1, 0, 0, 0, 0, 0, 0, 1], \
+    #           [0, 0, 0, 0, 0, 0, 0, 0], \
+    #           [0, 0, 0, 0, 0, 0, 0, 0], \
+    #           [1, 0, 0, 0, 0, 0, 0, 1], \
+    #           [1, 0, 0, 0, 0, 0, 0, 1], \
+    #           [1, 1, 1, 0, 0, 1, 1, 1]]
+
     # matrix = [[1, 1, 0, 0, 0, 0, 1, 1], [1, 0, 0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0],
     #           [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0, 1], [1, 1, 0, 0, 0,0, 1, 1]]
     f = np.array(matrix).ravel()
@@ -120,7 +138,7 @@ def euclidean_distance_i(test_data,train_lst,feature_lst):
 def nearest_neighbors(test_lst,train_lst,k):
     filter_idx = filter()
 
-    for test_data in test_lst:
+    for test_data in test_lst[:30]:
         distance_vector = euclidean_distance_i(test_data, train_lst,filter_idx)
         # sorted(distance_vector.keys())[:k] - gets the k nearest values from the distance_vector
         nearest_neighbors = sorted(distance_vector.keys())[:k]
@@ -146,7 +164,7 @@ def classify(train,test,k):
     f = open("knn_output.txt", "w")
     f.close()
     print "K = "+str(k)
-    for test_data in test_lst:
+    for test_data in test_lst[:30]:
         # print str(i)+" --id:: "+test_data.id+" --a:: "+test_data.label +" --p:: " +test_data.predicted
         if(test_data.label == test_data.predicted):
             correct+=1

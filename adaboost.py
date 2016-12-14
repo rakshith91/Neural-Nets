@@ -195,7 +195,7 @@ def main(train_file , test_file, stCount):
 
     #train_file = "/Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/train-data.txt"
     trainData , labels = read_data(train_file)
-    trainData = trainData[:]
+    trainData = trainData[:40000]
     wt = float(1) / len(trainData)
     for i in range(len(trainData)):
         trainData[i].append(wt)
@@ -266,10 +266,11 @@ def main(train_file , test_file, stCount):
         else:
             wrong += 1
         ind += 1
-    print corr, wrong
-    print "accuracy=", float(corr) * 100 / (corr + wrong), "%"
+
+
     confusionMatrix(cm)
-    print "Number of stumps=",stCount
+    print "accuracy=", float(corr) * 100 / (corr + wrong), "%"
+    print "\nNumber of stumps=",stCount
     exit()
 
 

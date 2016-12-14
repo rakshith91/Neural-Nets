@@ -1,10 +1,11 @@
 import knn
 from nnets import *
+import nnets
 import sys
 import adaboost
 
 """
-Please refer to the following files for more info
+Please refer to the start of following files for more description
 1. adaboost.py
 2. knn.py
 3. nnet.py
@@ -35,8 +36,8 @@ def main():
     technique = sys.argv[3]
 
     if (technique in ("nearest","best")):
-        k = 101
-        print "inside knn"
+        k = 201
+        print "inside knn , this takes upto 10 minutes to show the output"
         train = sys.argv[1]
         test = sys.argv[2]
         # (train, test, technique) = ("train-data-mod.txt", "test-data-mod.txt", "nearest")
@@ -47,7 +48,7 @@ def main():
     if (technique == "nnet"):
         input_data, class_labels, names = read_data(sys.argv[1])
         cd = {'0': 0, '90': 1, '180': 2, '270': 3}
-        weights_one, weights_two = train(input_data, class_labels, int(sys.argv[-1]))
+        weights_one, weights_two = nnets.train(input_data, class_labels, int(sys.argv[-1]))
         output_data, oclass_labels, test_names = read_data(sys.argv[2])
         pred = feed_forward(input_data, weights_one, weights_two)
         print "Train Accuracy is", accuracy(pred, class_labels)
@@ -57,11 +58,10 @@ def main():
         cf_list = write_to_file(test_pred, oclass_labels, test_names)
         confusionMatrix(cf_list)
 
-        print cf_list[:10]
+        #print cf_list[:10]
     # print time.time()-start
     if technique == "adaboost":
-        "python orient.py train_file.txt test_file.txt adaboost stump_count"
-        print sys.argv[0], sys.argv[1], sys.argv[2], sys.argv[4]
+        print "hii... this would take around 1 minute to run"
         adaboost.main(sys.argv[1], sys.argv[2], int(sys.argv[4]))
 
 

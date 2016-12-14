@@ -39,7 +39,7 @@ def main():
         if technique=="best":
             print "We are getting best accuracy for KNN, and adaboost is closely behind it..."
         k = 201
-        print "inside KNN , this takes upto 10 minutes to show the output"
+        print "inside KNN , this takes upto to 15  minutes to show the output"
         train = sys.argv[1]
         test = sys.argv[2]
         # (train, test, technique) = ("train-data-mod.txt", "test-data-mod.txt", "nearest")

@@ -36,8 +36,10 @@ def main():
     technique = sys.argv[3]
 
     if (technique in ("nearest","best")):
+        if technique=="best":
+            print "We are getting best accuracy for KNN, and adaboost is closely behind it..."
         k = 201
-        print "inside knn , this takes upto 10 minutes to show the output"
+        print "inside KNN , this takes upto 10 minutes to show the output"
         train = sys.argv[1]
         test = sys.argv[2]
         # (train, test, technique) = ("train-data-mod.txt", "test-data-mod.txt", "nearest")
@@ -45,6 +47,7 @@ def main():
         has a huge complexity'''
         result = knn.classify(train, test, k)
         confusionMatrix(result)
+        print "knn_output.txt is created. You can see our predictions there"
     if (technique == "nnet"):
         input_data, class_labels, names = read_data(sys.argv[1])
         cd = {'0': 0, '90': 1, '180': 2, '270': 3}
@@ -57,12 +60,12 @@ def main():
         print "Test Accuracy is", accuracy(test_pred, oclass_labels)
         cf_list = write_to_file(test_pred, oclass_labels, test_names)
         confusionMatrix(cf_list)
-
+        print "nnet_output.txt is created. You can see our predictions there"
         #print cf_list[:10]
     # print time.time()-start
     if technique == "adaboost":
         print "hii... this would take around 1 minute to run"
         adaboost.main(sys.argv[1], sys.argv[2], int(sys.argv[4]))
-
+        print "adaboost_output.txt is created. You can see our predictions there"
 
 main()

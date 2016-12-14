@@ -226,7 +226,7 @@ def main(train_file , test_file, stCount):
             sList.append(st)
         classes[cls] = sList
 
-    with open("adaboost", 'wb') as handle:
+    with open("model-file", 'wb') as handle:
         pickle.dump(classes, handle)
 
     cm = []
@@ -235,7 +235,7 @@ def main(train_file , test_file, stCount):
     # test_file = "/Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/test-data.txt"
     testData, labels = read_data(test_file)
     # @todo : load the testData into testData list
-    with open("adaboost", 'rb') as handle:
+    with open("model-file", 'rb') as handle:
         classes = pickle.load(handle)
 
     ind = 0

@@ -3,6 +3,45 @@ import random
 import pickle
 import copy
 import time
+"""
+We have implemented the adaboost technique in this file.
+
+1) Problem description:
+  The problem is to classify image orientation using adaboost. We have some changeable paramters like number of stumps,
+  types of stumps, type of decission at every decission node.
+
+2) Program logic:
+   Number of stumps is an input for this program. For every stump we are actually creating 4 stumps, one each for
+   0 classifier , 90 classifier, 180 classifier, 270 classifier
+   We are selecting 'n' number of random pairs initially. Every pair has two pixel values selected at random from the set of all pixels
+   For every stump we are selecting the best pair out of all the available pairs.
+   Once we select a pair(assume the pair has values 'a' and 'b') for a stump(assume the stump belongs to class 0 here) we have to decide
+    what would be our decission process - like we can have either have a<b to be 0 , a>b to be ~0 and vice versa.
+
+2) How the program works:
+    Every stump is an object of class Stump.
+    Steps:
+    1. Load the training data
+    2. Randomly select the features
+    3. Assign equal weights for all the training records
+    3. For every class label create set of n ensembles
+            a. for every stump in a set , first select the best pair out of the available feature pairs
+                i) For every pair figure out if a<b or a>b is gonna be the classifying lever.
+            b. After making a stump, calculate the weight(confidence) of the stump
+            c. Now update the weights of each tranining record.
+            Both the above weights are calculated using the error rate.
+    4. For a new test record :
+            Classify the test record with all the stumps that we have created for all the 4 types of classifiers
+            Now calculate the weighted output of all the four types of classifiers
+            Now which ever classifier classifies the test record with highest cumulative weight predict that particular output value
+
+3) Problems faced:
+    1. This program is easy to think but we found it a bit tricky to actually implement it.
+    2. One of the challenge we faced is how to select the features out of all the available set of features
+
+
+"""
+
 class Stump(object):
     def __init__(self, pair , type,logError):
         self.pair = pair
@@ -156,6 +195,7 @@ def main(train_file , test_file, stCount):
 
     #train_file = "/Users/hannavaj/Desktop/bsairamr-hannavaj-jeffravi-a5/train-data.txt"
     trainData , labels = read_data(train_file)
+    trainData = trainData[:]
     wt = float(1) / len(trainData)
     for i in range(len(trainData)):
         trainData[i].append(wt)
@@ -229,6 +269,7 @@ def main(train_file , test_file, stCount):
     print corr, wrong
     print "accuracy=", float(corr) * 100 / (corr + wrong), "%"
     confusionMatrix(cm)
+    print "Number of stumps=",stCount
     exit()
 
 
